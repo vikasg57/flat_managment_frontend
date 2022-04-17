@@ -2,12 +2,21 @@ import axios from "axios";
 
 export const ADD_FLAT="ADD_FLAT"
 
+export const ADD_SINGLE_FLAT="ADD_SINGLE_FLAT"
+
 export const ADD_RESIDENT="ADD_RESIDENT"
 
 export const ADD_FLAT_LOADING="ADD_FLAT_LOADING"
 
 export const ADD_FLAT_FAILURE="ADD_FLAT_FAILURE"
 
+
+export const addsingleflat=(payload)=>({
+
+    type:ADD_SINGLE_FLAT,
+    payload
+
+})
 
 export const addflat=(payload)=>({
 
@@ -69,11 +78,30 @@ export const handledscflat=()=>(dispatch)=>{
 
 export const handledblockfilter=(value)=>(dispatch)=>{
     dispatch(addflatloading())
+    axios.get(`http://localhost:5500/flat/type?type=${value}`).then((res)=>{
+
+    dispatch(addflat(res.data))
+    }).catch((er)=>{
+        dispatch(addflatfailure(er))
+    })
+}
+
+export const handledtypesearch=(value)=>(dispatch)=>{
+    dispatch(addflatloading())
     axios.get(`http://localhost:5500/flat/block?block=${value}`).then((res)=>{
 
     dispatch(addflat(res.data))
     }).catch((er)=>{
         dispatch(addflatfailure(er))
+    })
+}
+
+
+export const handleflatdetails=(value)=>(dispatch)=>{
+  
+    axios.get(`http://localhost:5500/flat/${value}`).then((res)=>{
+
+    dispatch(addsingleflat(res.data))
     })
 }
 
