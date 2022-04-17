@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { useDispatch,useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import {
   addnewflat,
   handleascflat,
@@ -13,15 +13,19 @@ import {
 
 export const Home = () => {
 
+    const navigate=useNavigate()
+
     const dispatch = useDispatch()
 
     const {flat,loading,error,singleflat}=useSelector((store)=>store.flat)
 
     // const flatobj=useSelector((store)=>store.flat)
 
-    console.log("flatobj",flat)
-    console.log("loading",loading)
-    console.log("error",error)
+    // console.log("flatobj",flat)
+    // console.log("loading",loading)
+    // console.log("error",error)
+
+    console.log(singleflat)
 
 
     useEffect(() => {
@@ -66,11 +70,13 @@ export const Home = () => {
 
       dispatch(handleflatdetails(id));
 
+      navigate("/flatdetails")
+
     }
 
 
    return loading ? (
-     <div class="lds-roller">
+     <div className="lds-roller">
        <div></div>
        <div></div>
        <div></div>

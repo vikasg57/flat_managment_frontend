@@ -5,7 +5,7 @@ const initialstate={
     flat:[],
     loading:false,
     error:false,
-    singleflat:[]
+    singleflat:{ resident_id:[]  }
 
 }
 
