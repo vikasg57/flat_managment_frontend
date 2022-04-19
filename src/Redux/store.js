@@ -1,11 +1,14 @@
 import{createStore,applyMiddleware,compose,combineReducers} from 'redux'
 
+import {loginnreducer} from './Login/loginreducer'
 import {reducer} from "./reducer"
 
 import thunk from "redux-thunk"
+import { signupreducer } from './Register/registerreducer'
 
 export const rootreducer=combineReducers({
-
+    signup:signupreducer,
+    login:loginnreducer,
     flat:reducer
 })
 
