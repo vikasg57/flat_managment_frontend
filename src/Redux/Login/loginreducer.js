@@ -27,10 +27,11 @@ export const loginnreducer=(store=initialState,{type,payload})=>{
                 ...store,
                 Success: true,
                 Authenticated:true,
-                Loading:true,
+                Loading:false,
                 failure:false,
                 token:payload.token,
-                name:payload.name
+                name:payload.name,
+                error:null
             }
 
             case LOGIN_FAILURE:
@@ -38,7 +39,7 @@ export const loginnreducer=(store=initialState,{type,payload})=>{
                     ...store,
                     Loading:false,
                     Failure:true,
-                    Success:true,
+                    Success:false,
                     Authenticated:false,
                     error:payload,
                     token:null,

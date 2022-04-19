@@ -19,7 +19,7 @@ export const signupsuccess=()=>{
 export const signupfailure=(payload)=>{
 
     return{
-        type:SIGNUP_LOADING,
+        type:SIGNUP_FAILURE,
         payload:payload
     }
 }
@@ -27,7 +27,21 @@ export const signupfailure=(payload)=>{
 export const signup=(payload)=>(dispatch)=>{
     dispatch(signuploading())
     axios.post("http://localhost:5500/register",payload).then((res)=>{
-        dispatch(signupsuccess())
+
+    
+
+
+     if(res.data.token){
+  dispatch(signupsuccess(res.data.token))
+
+     console.log(res.data)
+     }
+     else{
+    
+      dispatch(signupfailure(res.data.message))
+      console.log(res.data)
+     }  
+     
     }).catch((er)=>{
         dispatch(signupfailure(er.message))
     })

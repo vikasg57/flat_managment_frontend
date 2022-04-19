@@ -24,19 +24,26 @@ export const loginFailure = (payload) => {
 }
 
 export const logout = () => {
+    alert("click on log in button for login again")
     return {
         type: LOGOUT,
     };
 }
 
 export const login = (payload) => (dispatch) => {
+    console.log(payload)
     dispatch(loginLoading())
     axios
     .post("http://localhost:5500/login", payload)
     .then((res) => {
-      dispatch(loginSuccess({ token: res.data.token, name:payload.name }));
+        console.log(res.data)
+        if(res.data.error){
+             dispatch(loginFailure(res.data.error));
+                console.log(res.data)
+        }
+      dispatch(loginSuccess({ token: res.data.token, name:res.data.user.first_name }));
     })
     .catch((err) => {
-      dispatch(loginFailure(err.message));
+     
     });
 }
