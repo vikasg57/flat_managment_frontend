@@ -11,6 +11,7 @@ import {
   handledtypesearch,
   handleflatdetails,
 } from "../Redux/action";
+import { logout } from '../Redux/Login/action';
 
 export const Home = () => {
 
@@ -26,7 +27,7 @@ export const Home = () => {
     // console.log("loading",loading)
     // console.log("error",error)
 
-    console.log(singleflat)
+    // console.log(singleflat)
 
 
     useEffect(() => {
@@ -78,9 +79,7 @@ export const Home = () => {
 
 
    return loading ? (
-       
-    <h1>Loading .....</h1>
-     
+     <h1>Loading .....</h1>
    ) : error ? (
      "Error....."
    ) : (
@@ -96,9 +95,18 @@ export const Home = () => {
          SORT BY FLAT NO HIGHER TO LOWER{" "}
        </button>
 
-       <Link to={"/addflat"}>
+       <Link style={{ textDecoration: "none" }} to={"/addflat"}>
          <button className="button-18"> ADD FLAT</button>
        </Link>
+       <Link style={{ textDecoration: "none" }} to={"/login"}>
+         {" "}
+         <button className="button-18">LOG IN</button>
+       </Link>
+       <Link style={{ textDecoration: "none" }} to={"/register"}>
+         {" "}
+         <button className="button-18">SIGN UP</button>
+       </Link>
+       <button onClick={()=>(dispatch(logout()))} className="button-18">LOG OUT</button>
 
        <div className="filter_div">
          <input
