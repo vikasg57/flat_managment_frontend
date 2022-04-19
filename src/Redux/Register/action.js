@@ -26,7 +26,7 @@ export const signupfailure=(payload)=>{
 
 export const signup=(payload)=>(dispatch)=>{
     dispatch(signuploading())
-    axios.post("http://localhost:5500/register",payload).then((res)=>{
+    axios.post("https://housing-backend-server.herokuapp.com/register",payload).then((res)=>{
 
     
 

@@ -34,7 +34,7 @@ export const login = (payload) => (dispatch) => {
     console.log(payload)
     dispatch(loginLoading())
     axios
-    .post("http://localhost:5500/login", payload)
+    .post("https://housing-backend-server.herokuapp.com/login", payload)
     .then((res) => {
         console.log(res.data)
         if(res.data.error){
