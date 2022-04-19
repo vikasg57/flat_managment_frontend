@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+
 import { useDispatch,useSelector } from 'react-redux'
 import { Link,useNavigate } from 'react-router-dom'
 import {
@@ -73,19 +74,13 @@ export const Home = () => {
       navigate("/flatdetails")
 
     }
+      
 
 
    return loading ? (
-     <div className="lds-roller">
-       <div></div>
-       <div></div>
-       <div></div>
-       <div></div>
-       <div></div>
-       <div></div>
-       <div></div>
-       <div></div>
-     </div>
+       
+    <h1>Loading .....</h1>
+     
    ) : error ? (
      "Error....."
    ) : (

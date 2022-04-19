@@ -46,7 +46,7 @@ export const addflatfailure=(payload)=>{
 export const addnewflat=()=>(dispatch)=>{
     dispatch(addflatloading())
 
-    axios.get("http://localhost:5500/flat").then((res)=>{
+    axios.get("https://housing-backend-server.herokuapp.com/flat").then((res)=>{
 
     dispatch(addflat(res.data))
     }).catch((er)=>{
@@ -57,7 +57,7 @@ export const addnewflat=()=>(dispatch)=>{
 export const handleascflat=()=>(dispatch)=>{
      dispatch(addflatloading())
 
-    axios.get("http://localhost:5500/flat/sort/asc").then((res)=>{
+    axios.get("https://housing-backend-server.herokuapp.com/flat/sort/asc").then((res)=>{
 
     dispatch(addflat(res.data))
     }).catch((er)=>{
@@ -68,7 +68,7 @@ export const handleascflat=()=>(dispatch)=>{
 
 export const handledscflat=()=>(dispatch)=>{
     dispatch(addflatloading())
-    axios.get("http://localhost:5500/flat/sort/dsc").then((res)=>{
+    axios.get("https://housing-backend-server.herokuapp.com/flat/sort/dsc").then((res)=>{
 
     dispatch(addflat(res.data))
     }).catch((er)=>{
@@ -78,7 +78,7 @@ export const handledscflat=()=>(dispatch)=>{
 
 export const handledblockfilter=(value)=>(dispatch)=>{
     dispatch(addflatloading())
-    axios.get(`http://localhost:5500/flat/type?type=${value}`).then((res)=>{
+    axios.get(`https://housing-backend-server.herokuapp.com/flat/type?type=${value}`).then((res)=>{
 
     dispatch(addflat(res.data))
     }).catch((er)=>{
@@ -88,7 +88,7 @@ export const handledblockfilter=(value)=>(dispatch)=>{
 
 export const handledtypesearch=(value)=>(dispatch)=>{
     dispatch(addflatloading())
-    axios.get(`http://localhost:5500/flat/block?block=${value}`).then((res)=>{
+    axios.get(`https://housing-backend-server.herokuapp.com/flat/block?block=${value}`).then((res)=>{
 
     dispatch(addflat(res.data))
     }).catch((er)=>{
@@ -99,7 +99,7 @@ export const handledtypesearch=(value)=>(dispatch)=>{
 
 export const handleflatdetails=(value)=>(dispatch)=>{
   
-    axios.get(`http://localhost:5500/flat/${value}`).then((res)=>{
+    axios.get(`https://housing-backend-server.herokuapp.com/flat/${value}`).then((res)=>{
 
     dispatch(addsingleflat(res.data))
     })
