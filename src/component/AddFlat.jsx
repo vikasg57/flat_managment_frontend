@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { Link, useNavigate} from "react-router-dom";
-
-
 import { Link, useNavigate } from "react-router-dom";
 export const AddFlat = () => {
 
@@ -10,13 +7,13 @@ export const AddFlat = () => {
 
 
 
-  useEffect(() => {
-    if (data.Success) {
-      alert("login success");
+  // useEffect(() => {
+  //   if (data.Success) {
+  //     alert("login success");
 
-      navigate("/");
-    }
-  }, [data]);
+  //     navigate("/");
+  //   }
+  // }, [data]);
 
   const [form, setform] = useState({
     first_name: "",
