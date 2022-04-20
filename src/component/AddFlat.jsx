@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 
+import { Link, useNavigate} from "react-router-dom";
+
 
 import { Link, useNavigate } from "react-router-dom";
 export const AddFlat = () => {
 
+  const navigate=useNavigate()
 
-  const data = useSelector((store) => store);
+
 
   useEffect(() => {
     if (data.Success) {
