@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useNavigate } from "react-router-dom";
 export const AddFlat = () => {
-  const dispatch = useDispatch();
 
-  const navigate = useNavigate();
 
   const data = useSelector((store) => store);
 
