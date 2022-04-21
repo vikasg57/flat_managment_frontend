@@ -5,8 +5,6 @@ export const AddFlat = () => {
 
   const navigate=useNavigate()
 
-
-
   // useEffect(() => {
   //   if (data.Success) {
   //     alert("login success");

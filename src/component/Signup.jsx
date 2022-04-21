@@ -50,7 +50,7 @@ export const Signup = () => {
         e.preventDefault()
 
         dispatch(signup(form))
-        console.log("vikas")
+       
 
       }
       ;

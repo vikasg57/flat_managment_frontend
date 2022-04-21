@@ -28,16 +28,13 @@ export const signup=(payload)=>(dispatch)=>{
     dispatch(signuploading())
     axios.post("https://housing-backend-server.herokuapp.com/register",payload).then((res)=>{
 
-    
-
-
      if(res.data.token){
   dispatch(signupsuccess(res.data.token))
 
      console.log(res.data)
      }
      else{
-    
+
       dispatch(signupfailure(res.data.message))
       console.log(res.data)
      }  
