@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState} from 'react'
 
 
 import { useDispatch,useSelector } from 'react-redux'
@@ -10,16 +10,21 @@ import {
   handledblockfilter,
   handledtypesearch,
   handleflatdetails,
+  paginationflat,
 } from "../Redux/action";
 import { logout } from '../Redux/Login/action';
 
 export const Home = () => {
+
+  const [page, setpage] = useState(1)
 
     const navigate=useNavigate()
 
     const dispatch = useDispatch()
 
     const {flat,loading,error,singleflat}=useSelector((store)=>store.flat)
+
+    console.log(flat)
 
     // const flatobj=useSelector((store)=>store.flat)
 
@@ -28,18 +33,18 @@ export const Home = () => {
     // console.log("error",error)
 
     // console.log(singleflat)
-
+    
 
     useEffect(() => {
     
      getallflat()
 
 
-    }, [])
+    }, [page])
 
     const getallflat=()=>{
 
-        dispatch(addnewflat())
+        dispatch(addnewflat(page))
     }
 
     const handlesortasc=()=>{
@@ -48,13 +53,9 @@ export const Home = () => {
     }
     const handlesortdsc=()=>{
         dispatch(handledscflat());
-
     }
 
     const handlefilter=(e)=>{
-
-    
-
          dispatch(handledblockfilter(e.target.value));
     }
 
@@ -65,7 +66,6 @@ export const Home = () => {
         dispatch(handledtypesearch(e.target.value));
             
         }, 1000);
-
     }
 
     const handledetails=(id)=>{
@@ -75,7 +75,7 @@ export const Home = () => {
       navigate("/flatdetails")
 
     }
-      
+
 
 
    return loading ? (
@@ -106,7 +106,9 @@ export const Home = () => {
          {" "}
          <button className="button-18">SIGN UP</button>
        </Link>
-       <button onClick={()=>(dispatch(logout()))} className="button-18">LOG OUT</button>
+       <button onClick={() => dispatch(logout())} className="button-18">
+         LOG OUT
+       </button>
 
        <div className="filter_div">
          <input
@@ -123,20 +125,42 @@ export const Home = () => {
          </select>
        </div>
 
+       <button
+         className="button-18 btn_margin"
+         name="prev"
+         onClick={() => {
+           setpage(page - 1);
+         }}
+       >
+         PREV
+       </button>
+       <button
+         className="button-18 btn_margin"
+         name="next"
+         onClick={() => {
+           setpage(page + 1);
+         }}
+       >
+         NEXT
+       </button>
        <div className="grid_homepage">
-         {flat.map(({ block, flat_no, image, resident_id, _id, type }) => (
-           <div key={_id} onClick={() => handledetails(_id)}>
-             <div>
-               {" "}
-               <img src={image} alt="" />
-             </div>
+         {
+           // console.log(flat.response)
 
-             <h3>type: {type} </h3>
-             <h3>block no: {block}</h3>
-             <h3>flat no: {flat_no}</h3>
-             {/* {console.log(resident_id[0])} */}
-           </div>
-         ))}
+           flat.map(({ block, flat_no, image, resident_id, _id, type }) => (
+             <div key={_id} onClick={() => handledetails(_id)}>
+               <div>
+                 {" "}
+                 <img src={image} alt="" />
+               </div>
+
+               <h3>type: {type} </h3>
+               <h3>block no: {block}</h3>
+               <h3>flat no: {flat_no}</h3>
+               {/* {console.log(resident_id[0])} */}
+             </div>
+           ))
+         }
        </div>
      </div>
    );

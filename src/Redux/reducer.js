@@ -1,11 +1,12 @@
-import {ADD_FLAT, ADD_FLAT_LOADING,ADD_FLAT_FAILURE, ADD_SINGLE_FLAT} from "./action"
+import {ADD_FLAT, ADD_FLAT_LOADING,ADD_FLAT_FAILURE, ADD_SINGLE_FLAT, ADD_PAGE_COUNT} from "./action"
 
 const initialstate={
 
     flat:[],
     loading:false,
     error:false,
-    singleflat:{ resident_id:[]  }
+    singleflat:{ resident_id:[]  },
+    pagecount:"",
 
 }
 
@@ -49,6 +50,8 @@ export const reducer=(store=initialstate,{type,payload})=>{
             singleflat:payload
             
         }
+
+      
 
         default:
             return store

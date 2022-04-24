@@ -11,12 +11,17 @@ export const ADD_FLAT_LOADING="ADD_FLAT_LOADING"
 export const ADD_FLAT_FAILURE="ADD_FLAT_FAILURE"
 
 
+
+
 export const addsingleflat=(payload)=>({
 
     type:ADD_SINGLE_FLAT,
     payload
 
 })
+
+
+
 
 export const addflat=(payload)=>({
 
@@ -43,12 +48,18 @@ export const addflatfailure=(payload)=>{
 
 }
 
-export const addnewflat=()=>(dispatch)=>{
+export const addnewflat=(page)=>(dispatch)=>{
+
     dispatch(addflatloading())
 
-    axios.get("https://housing-backend-server.herokuapp.com/flat").then((res)=>{
+    axios.get(`https://housing-backend-server.herokuapp.com/flat?page=${page}&size=6    `).then((res)=>{
 
-    dispatch(addflat(res.data))
+
+
+
+     dispatch(addflat(res.data.response));
+   
+
     }).catch((er)=>{
         dispatch(addflatfailure(er))
     })
@@ -101,9 +112,12 @@ export const handleflatdetails=(value)=>(dispatch)=>{
   
     axios.get(`https://housing-backend-server.herokuapp.com/flat/${value}`).then((res)=>{
 
+    console.log(res.data)
     dispatch(addsingleflat(res.data))
     })
 }
+
+
 
 
 
