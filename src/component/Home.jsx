@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect,useState} from 'react'
 
 
@@ -73,6 +74,26 @@ export const Home = () => {
       dispatch(handleflatdetails(id));
 
       navigate("/flatdetails")
+
+
+    }
+
+    const handledelete=(e,id)=>{
+
+      e.stopPropagation();
+
+    axios.delete(`https://housing-backend-server.herokuapp.com/flat/${id}`).then((response)=>{
+
+    console.log(response)
+
+     getallflat();
+
+
+    });
+
+
+
+
 
     }
 
@@ -158,6 +179,8 @@ export const Home = () => {
                <h3>block no: {block}</h3>
                <h3>flat no: {flat_no}</h3>
                {/* {console.log(resident_id[0])} */}
+
+               <button onClick={(e) =>handledelete(e,_id)}className="button-18">Delete</button>
              </div>
            ))
          }
